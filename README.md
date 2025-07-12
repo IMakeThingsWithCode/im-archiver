@@ -12,8 +12,9 @@ This summer, I have to learn Integrated 3 as I'd like to test out of it. So, I'm
 ### Todo
 - [x] Get first working prototype done
 - [x] Adapt to use multiple courses
-- [ ] CLI
-- [ ] Fix pages to work offline
-- [ ] Download formatting -- folder structure and whatnot
+- [x] CLI
+- [x] Fix pages to work offline
+- [x] Download formatting -- folder structure and whatnot
+- [x] Refactor {variable names, structure} for better readability and adaptability
 - [ ] Polish readme
-- [ ] Refactor {variable names, structure} for better readability and adaptability
+
