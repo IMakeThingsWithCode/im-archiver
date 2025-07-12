@@ -1,5 +1,5 @@
 # 📜 im-archiver 🧮
-Automatically archives student courses from Illustrative Mathematics' accessim.org
+Automatically archives courses from Illustrative Mathematics' accessim.org
 
 This summer, I have to learn Integrated 3 as I'd like to test out of it. So, I'm building this tool that archives the free courses on accessim.org for offline use.
 
