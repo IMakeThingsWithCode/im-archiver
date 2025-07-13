@@ -28,6 +28,16 @@ url_to_file_location () {
   echo `echo $lesson_url | sed 's/https\:\//./'`".html"
 }
 
+# cowsay im-archiver
+echo " _____________"
+echo "< im-archiver >"
+echo " -------------"
+echo "        \\  ^__^"
+echo "         \\ (oo)\_______"
+echo "           (__)\       )\/\\"
+echo "               ||----w |"
+echo "               ||     ||"
+
 # Select course group
 
 echo -e "Select a course group:\n - k5 (K-5)\n - ms (6-8)\n - hs (9-12)"
@@ -94,3 +104,5 @@ for unit in "${units[@]}"; do
     mv `url_to_file_location` `url_to_file_location | grep -o "^[^\?]*"`".html"
   done
 done
+
+echo "!!! Your files are in $(pwd)"`echo $lesson_url | grep -E "\/accessim.org\/([^\/]*\/){2}" -o`
