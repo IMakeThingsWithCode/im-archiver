@@ -7,9 +7,11 @@ Automatically archives courses from Illustrative Mathematics' accessim.org
 
 This summer, I have to learn Integrated 3 as I'd like to test out of it. So, I'm building this tool that archives the free courses on accessim.org for offline use.
 
-> This script has been tested on Linux only. It has not been tested on macOS or Windows (through WSL).
+## Demo
+![demo](demo.mp4)
 
 ## Try it out:
+> This script has been tested on Linux only. It has not been tested on macOS or Windows (through WSL).
 ```sh
 curl https://raw.githubusercontent.com/IMakeThingsWithCode/im-archiver/refs/heads/main/main.sh -s > tmp && bash tmp; rm tmp
 ```
