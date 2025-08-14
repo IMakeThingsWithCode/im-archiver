@@ -7,7 +7,6 @@ Automatically archives courses from Illustrative Mathematics' accessim.org
 
 This summer, I have to learn Integrated 3 as I'd like to test out of it. So, I'm building this tool that archives the free courses on accessim.org for offline use.
 
-## Demo
 ![Demo video](https://github.com/user-attachments/assets/36746c0f-de82-41e9-aecd-d41bbfa04e41)
 
 ## Try it out:
