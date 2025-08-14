@@ -18,7 +18,6 @@ curl_then_sift () {
 valid () {
   # $1 - option selected (string)
   # $2 - options in format |o1|o2|o3|
-  
   if ! echo "$2" | grep "|${1//|/}|" > /dev/null; then echo "Option '$1' not in options $2"; exit 1; fi
 }
 
@@ -31,9 +30,9 @@ url_to_file_location () {
 echo " _____________"
 echo "< im-archiver >"
 echo " -------------"
-echo "        \\  ^__^"
-echo "         \\ (oo)\_______"
-echo "           (__)\       )\/\\"
+echo "        \  ^__^"
+echo "         \ (oo)\_______"
+echo "           (__)\       )\/\ "
 echo "               ||----w |"
 echo "               ||     ||"
 
@@ -97,13 +96,23 @@ for unit in "${units[@]}"; do
     done
 
     echo "  ↳ Setting up assets..."
-    sed -i 's/src=\"https\:\/\/cms-assets.illustrativemathematics."org\//src=\"..\/..\/..\/..\/assets\//g' "$(url_to_file_location)"
+    sed -i -E 's/src=\"https\:\/\/cms-assets.illustrativemathematics.org\//src=\"..\/..\/..\/..\/assets\//g' "$(url_to_file_location)"
+
+    echo "  ↳ Removing HTTPS calls (fixes issues on Chromium)..."
+    sed -i -E 's/"https:\/\/[^"]*\.js[^"]*"//g' "$(url_to_file_location)"
+
+    echo "  ↳ Fixing SVGs..."
+    cd accessim.org || exit
+    mapfile svgs <<< "$(grep "</svg>" assets/* | sed -E "s/:[^:]*$//g" | sed -E "s/^[^\.]*\.svg$//g" | grep .)"
+    cd .. || exit
+    for file in "${svgs[@]}"; do
+      sfile=$(echo "$file" | tr -d '\n')
+      sed -i -E "s/${sfile//\//\\/}/${sfile//\//\\/}.svg/g" "$(url_to_file_location)" 2> /dev/null
+      mv "./accessim.org/${sfile}" "./accessim.org/${sfile}.svg" 2> /dev/null
+    done
 
     echo "  ↳ Renaming file..."
-    mv "$(url_to_file_location)" "$(url_to_file_location | grep -o "^[^\?]*")"".html"
-
-    echo "  ↳ Fixing for Chromium..."
-    sed -i -E 's/"https:\/\/[^"]*\.js[^"]*"//g' "$(url_to_file_location | grep -o "^[^\?]*")"".html"
+    mv "$(url_to_file_location)" "$(url_to_file_location | grep -o "^[^\?]*").html"
   done
 done
 
